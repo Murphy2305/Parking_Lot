@@ -1,23 +1,40 @@
 #include "./src/parking/lot/ParkingLot.h"
-#include <iostream>
-#include <string>
-#include <limits>
-
-void clearInputBuffer()
-{
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
+#include <bits/stdc++.h>
+using namespace std;
 
 int main()
 {
     int numFloors, spotsPerFloor;
 
-    cout << "Enter number of floors: ";
-    cin >> numFloors;
+    while (true)
+    {
+        cout << "Enter number of floors: ";
+        if (!(cin >> numFloors) || numFloors <= 0)
+        {
+            cout << "Invalid input. Please enter a positive integer.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        else
+        {
+            break;
+        }
+    }
 
-    cout << "Enter number of spots per floor: ";
-    cin >> spotsPerFloor;
+    while (true)
+    {
+        cout << "Enter number of spots per floor: ";
+        if (!(cin >> spotsPerFloor) || spotsPerFloor <= 0)
+        {
+            cout << "Invalid input. Please enter a positive integer.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        else
+        {
+            break;
+        }
+    }
 
     ParkingLot parkingLot(numFloors, spotsPerFloor);
 
@@ -27,67 +44,53 @@ int main()
 
     while (running)
     {
-        cout << "\n========== PARKING LOT MANAGEMENT SYSTEM ==========\n";
-        cout << "1. Park a vehicle\n";
-        cout << "2. Remove a vehicle\n";
-        cout << "3. Get vehicle location\n";
-        cout << "4. Show available spots per floor\n";
-        cout << "5. Check if parking lot is full\n";
-        cout << "6. Exit\n";
+        cout << "\n========== PARKING LOT SYSTEM ==========\n";
+        cout << "1. Park a vehicle" << endl;
+        cout << "2. Remove a vehicle" << endl;
+        cout << "3. Get vehicle location" << endl;
+        cout << "4. Show available spots per floor" << endl;
+        cout << "5. Check if parking lot is full" << endl;
+        cout << "6. Exit" << endl;
         cout << "Enter your choice: ";
 
         if (!(cin >> choice))
         {
-            cout << "Invalid input. Please enter a number.\n";
-            clearInputBuffer();
+            cout << "Invalid input. Please enter a number between 1 and 6.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
 
         switch (choice)
         {
         case 1:
-        {
-            clearInputBuffer();
-            cout << "Enter license plate: ";
+            cin >> ws;
             getline(cin, licensePlate);
-
-            cout << "Enter vehicle type (Car/Truck/Bike): ";
             getline(cin, vehicleType);
-
-            bool success = parkingLot.parkVehicle(licensePlate, vehicleType);
             cout << "Parking " << vehicleType << " " << licensePlate << ": "
-                 << (success ? "Success" : "Failed") << endl;
+                 << (parkingLot.parkVehicle(licensePlate, vehicleType) ? "Success" : "Failed") << endl;
             break;
-        }
 
         case 2:
-        {
-            clearInputBuffer();
-            cout << "Enter license plate of vehicle to remove: ";
+            cin >> ws;
             getline(cin, licensePlate);
-
-            bool success = parkingLot.removeVehicle(licensePlate);
             cout << "Removing vehicle " << licensePlate << ": "
-                 << (success ? "Success" : "Failed") << endl;
+                 << (parkingLot.removeVehicle(licensePlate) ? "Success" : "Failed") << endl;
             break;
-        }
 
         case 3:
         {
-            clearInputBuffer();
-            cout << "Enter license plate to locate: ";
+            cin >> ws;
             getline(cin, licensePlate);
-
-            int floor = parkingLot.getVehicleLocation(licensePlate).first;
-            vector<int> spots = parkingLot.getVehicleLocation(licensePlate).second;
+            pair<int, vector<int>> location = parkingLot.getVehicleLocation(licensePlate);
+            int floor = location.first;
+            vector<int> spots = location.second;
 
             if (floor != -1)
             {
                 cout << "Vehicle " << licensePlate << " is parked on floor " << floor << " at spots: ";
                 for (int spot : spots)
-                {
                     cout << spot << " ";
-                }
                 cout << endl;
             }
             else
@@ -99,36 +102,25 @@ int main()
 
         case 4:
         {
-            auto availableSpots = parkingLot.getAvailableSpotsPerFloor();
-            cout << "Available spots per floor:" << endl;
+            vector<int> availableSpots = parkingLot.getAvailableSpotsPerFloor();
             for (size_t i = 0; i < availableSpots.size(); ++i)
-            {
                 cout << "Floor " << i << ": " << availableSpots[i] << " spots" << endl;
-            }
             break;
         }
 
         case 5:
-        {
-            cout << "Is parking lot full? "
-                 << (parkingLot.isFull() ? "Yes" : "No") << endl;
+            cout << "Is parking lot full? " << (parkingLot.isFull() ? "Yes" : "No") << endl;
             break;
-        }
 
         case 6:
-        {
             cout << "Exiting program. Goodbye!" << endl;
             running = false;
             break;
-        }
 
         default:
-        {
             cout << "Invalid choice. Please enter a number between 1 and 6." << endl;
             break;
         }
-        }
     }
-
     return 0;
 }
