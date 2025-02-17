@@ -45,12 +45,12 @@ int main()
     while (running)
     {
         cout << "\n========== PARKING LOT SYSTEM ==========\n";
-        cout << "1. Park a vehicle" << endl;
-        cout << "2. Remove a vehicle" << endl;
-        cout << "3. Get vehicle location" << endl;
-        cout << "4. Show available spots per floor" << endl;
-        cout << "5. Check if parking lot is full" << endl;
-        cout << "6. Exit" << endl;
+        cout << "Press 1 to park a vehicle" << endl;
+        cout << "Press 2 to remove a vehicle" << endl;
+        cout << "Press 3 to get vehicle location" << endl;
+        cout << "Press 4 to show available spots per floor" << endl;
+        cout << "Press 5 to check if parking lot is full" << endl;
+        cout << "Press 6 to exit" << endl;
         cout << "Enter your choice: ";
 
         if (!(cin >> choice))
@@ -64,14 +64,19 @@ int main()
         switch (choice)
         {
         case 1:
+            cout << "Enter license plate: ";
             cin >> ws;
             getline(cin, licensePlate);
+
+            cout << "Enter vehicle type (Car, Bike, or Truck only): ";
             getline(cin, vehicleType);
+
             cout << "Parking " << vehicleType << " " << licensePlate << ": "
                  << (parkingLot.parkVehicle(licensePlate, vehicleType) ? "Success" : "Failed") << endl;
             break;
 
         case 2:
+            cout << "Enter license plate of vehicle to remove: ";
             cin >> ws;
             getline(cin, licensePlate);
             cout << "Removing vehicle " << licensePlate << ": "
@@ -80,6 +85,7 @@ int main()
 
         case 3:
         {
+            cout << "Enter license plate to locate: ";
             cin >> ws;
             getline(cin, licensePlate);
             pair<int, vector<int>> location = parkingLot.getVehicleLocation(licensePlate);
