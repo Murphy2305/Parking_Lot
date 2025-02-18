@@ -10,13 +10,13 @@ To compile and run the project, use the following commands:
 
 #### Windows (Using MinGW)
 ```sh
-g++ -std=c++11 main.cpp -o a.exe
+g++ main.cpp -o a.exe
 ./a.exe
 ```
 
 #### Linux/macOS
 ```sh
-g++ -std=c++11 main.cpp -o a.out
+g++ main.cpp -o a.out
 ./a.out
 ```
 
