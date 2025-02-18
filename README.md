@@ -78,11 +78,10 @@ cout << "Press 6 to exit" << endl;
 cout << "Enter your choice: ";
 ```
 
-## UML Parking Lot Diagram
 
-Click the image to view the full diagram:
-
-[![UML Parking Lot Diagram](./path/to/UML_ParkingLot.png)]([http://link_to_the_full_diagram_or_resource](https://github.com/Murphy2305/Parking_Lot/blob/main/UML_ParkingLot.png))
+## Additional Resources
+For a better understanding of the system, refer to the UML diagram:
+![UML Diagram](./UML_ParkingLot.png)
 
 
 ---
