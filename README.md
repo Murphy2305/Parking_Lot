@@ -14,11 +14,6 @@ g++ main.cpp -o a.exe
 ./a.exe
 ```
 
-#### Linux/macOS
-```sh
-g++ main.cpp -o a.out
-./a.out
-```
 
 ## Project Structure
 ```
