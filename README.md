@@ -81,7 +81,7 @@ cout << "Enter your choice: ";
 ## Additional Resources
 For a better understanding of the system, refer to the UML diagram:
 ```
-🖼 UML_ParkingLot.png
+[![UML Parking Lot Diagram](./path/to/UML_ParkingLot.png)](http://link_to_the_full_diagram_or_resource)
 ```
 
 ---
