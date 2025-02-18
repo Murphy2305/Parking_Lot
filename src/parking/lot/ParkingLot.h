@@ -1,4 +1,3 @@
-// File: ParkingLot.h
 #pragma once
 #include <bits/stdc++.h>
 #include <atomic>
